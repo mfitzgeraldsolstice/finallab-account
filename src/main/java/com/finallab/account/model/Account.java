@@ -88,7 +88,7 @@ public class Account {
         return addressId;
     }
 
-    public void setAddressId(Long address) {
+    public void setAddressId(Long addressId) {
         this.addressId = addressId;
     }
 }

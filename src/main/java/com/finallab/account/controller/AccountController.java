@@ -22,11 +22,11 @@ import java.util.Optional;
 public class AccountController {
     Logger logger = LoggerFactory.getLogger("AccountController");
 
-   AccountService accountService;
+    AccountService accountService;
 
-    /*public AccountController(AccountService accountService){
+    public AccountController(AccountService accountService){
         this.accountService = accountService;
-    }*/
+    }
 
     @PostMapping("/account")
     @HystrixCommand(fallbackMethod = "saveAccountFallback")
@@ -67,8 +67,8 @@ public class AccountController {
         return new Account();
     }
 
-    public Account getAccountFallback(Account account){
-        logger.error("Error getting account: " + account);
+    public Account getAccountFallback(Long id){
+        logger.error("Error getting account: " + id);
         return new Account();
     }
 

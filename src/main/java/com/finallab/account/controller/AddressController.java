@@ -22,9 +22,9 @@ public class AddressController {
 
     AddressService addressService;
 
-    /*public AddressController(AddressService addressService){
+    public AddressController(AddressService addressService){
         this.addressService = addressService;
-    }*/
+    }
 
     @PostMapping("/accounts/{id}/address")
     @HystrixCommand(fallbackMethod = "saveAddressFallback")
@@ -44,6 +44,7 @@ public class AddressController {
         return savedAddress;
     }
 
+
     @GetMapping("/accounts/{id}/address")
     @HystrixCommand(fallbackMethod = "getAddressByAccountIdFallback")
     public Address getAddressByAccountId(@PathVariable("id") Long accountId){
@@ -58,13 +59,13 @@ public class AddressController {
         return updatedAddress;
     }
 
-    public Address saveAddressFallback(Address address){
-        logger.error("Error saving address: " + address);
+    public Address saveAddressFallback(Address address, Long id){
+        logger.error("Error saving address: " + address + " " + id);
         return new Address();
     }
 
-    public Address getAddressByAccountIdFallback(Address address){
-        logger.error("Error getting address by account id: " + address);
+    public Address getAddressByAccountIdFallback(Long accountId){
+        logger.error("Error getting address by account id: " + accountId);
         return new Address();
     }
 

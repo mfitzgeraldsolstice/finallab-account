@@ -29,6 +29,7 @@ public class AddressService {
         address.setAccountId(id);
         Address addressSaved = addressRepository.save(address);
         Account accountToUpdate = accountService.get(id);
+        accountToUpdate.setAddressId(addressSaved.getAddressId());
         accountService.save(accountToUpdate);
         return addressSaved;
     }
